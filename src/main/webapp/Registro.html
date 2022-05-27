@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registro de usuario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/Registro.css">
+    <link rel="shortcut icon" href="icono.png">
+
+</head>
+
+
+<body>
+    <section class="form-login">
+        <img src="icono.png" alt="">
+        <h1>Bienvenido a MyNote</h1>
+
+        <h2>No olvides lo importante.</h2>
+        <h3>Registrate</h3>
+        <form action="Register" method="POST" id="registroFor" onsubmit="return register();">
+            <input class="controls" type="text" name="Nombre" id="Nombre" placeholder="Nombre(s)" required
+                pattern="([a-z]|[A-Z])+" title="Solo introduzca letras">
+            <input class="controls" type="text" name="Apellidos" id="Apellidos" placeholder="Apellido(s)" required
+                pattern="([a-z]|[A-Z])+" title="Solo introduzca letras">
+            <input class="controls" type="date" name="Fecha" id="fecha" required onchange="validarFecha()">
+            <input class="controls" type="email" name="CorreoElectronico" id="correo" placeholder="Correo">
+            <input class="controls" type="file" name="imagen">
+            <input class="controls" type="text" name="Username" id="usuario" placeholder="Nombre de usuario" required>
+            <input class="controls" type="password" name="Contraseña" id="contra" placeholder="Contraseña" required>
+            <input class="controls" type="password" name="Confirmar" id="Confirmar" placeholder="Confirmar contraseña" required onkeyup="OnChangeContra(this)">
+            <ul class="elementos"> 
+                <li id="len">Minimo 8 caracteres</li>
+                <li id="mayus">1 mayuscula</li>
+                <li id="minus">1 minuscula</li>
+                <li id="num">1 numero</li>
+                <li id="punto">1 signo de puntuacion</li>
+
+            </ul>
+
+            <ul>
+
+            </ul>
+            <input class="button" type="submit" onclick='register()' value="Terminar" >
+
+            <p><a>¿Ya tienes cuenta?</a></p>
+            <p><a href="index.html">Volver</a></p>
+
+        </form>
+
+    </section>
+    <div>
+        <footer class="footer-box">
+            <a href="" class="footer">Condiciones del servicio</a>
+            <a href="" class="footer">¿Quiénes somos?</a>
+            <span class="footer">Copyright 2022 MyNote Corporation. Todos los derechos reservados.</span>
+            <span class="footer">Términos y condiciones</span>
+        </footer>
+    </div>
+    <script src="JS/jquery.js"></script>
+    <script src="JS/Register.js"></script>
+    <script src="index.js"></script>
+
+    <script>
+
+        function validarFecha() {
+            const inputFecha = document.getElementById("fecha");
+            const hoy = new Date();
+            const fecha1 = new Date(inputFecha.value);
+            
+           
+            
+           hoy.setHours(0, 0, 0, 0);
+            fecha1.setHours(0, 0, 0, 0);
+          
+                    
+            if (fecha1.valueOf() > hoy.valueOf()) {
+                alert("Fecha invalida, debe ser igual o menor que la fecha actual");
+            } else {
+                alert("Fecha valida");
+            }
+
+        }
+
+
+        function validarNombre() {
+
+            const inputNombre = document.getElementById("contra");
+            const confir = document.getElementById("Confirmar");
+            console.log(confir.value)
+            if (confir.value !== inputNombre.value) {
+
+                alert("Las contraseñas son diferentes")
+
+            }
+            else {
+                alert("Las contraseñas son iguales")
+            }
+        }
+        function OnChangeContra(inputContraseña) {
+            var Contraseña = document.getElementById("contra");
+            console.log(inputContraseña.value);
+            if (inputContraseña.value != Contraseña.value) {
+
+                inputContraseña.setCustomValidity("Las Contraseña no coinciden introduzca Contraseñas iguales");
+            } else {
+                inputContraseña.setCustomValidity("");
+            }
+
+
+
+        }
+    </script>
+</body>
+
+</html>
